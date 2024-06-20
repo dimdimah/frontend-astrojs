@@ -1,0 +1,49 @@
+---
+export async function getStaticPaths() {
+  const response = await fetch('http://localhost:3221/api/hari');
+  const hariList = await response.json();
+  
+  return hariList.map((hari) => ({
+    params: { id: hari.id.toString() },
+  }));
+}
+
+const { id } = Astro.params;
+const response = await fetch(`http://localhost:3221/api/hari/${id}`);
+const data = await response.json();
+---
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Hari - {data.hari.nama_hari}</title>
+</head>
+<body>
+    <h1>Detail Hari</h1>
+    <h2>{data.hari.nama_hari}</h2>
+    
+    <h3>Asisten:</h3>
+    <ul>
+        {data.asisten.map((a) => (
+            <li>{a.nama_matkul} - {a.nama_dosen} ({a.jam_matkul})</li>
+        ))}
+    </ul>
+    
+    <h3>Kuliah:</h3>
+    <ul>
+        {data.kuliah.map((k) => (
+            <li>{k.nama_matkul} - {k.nama_dosen} ({k.jam_matkul})</li>
+        ))}
+    </ul>
+    
+    <h3>Piket:</h3>
+    <ul>
+        {data.piket.map((p) => (
+            <li>{p.shift_piket} ({p.jam_piket})</li>
+        ))}
+    </ul>
+    
+    <a href="/">Kembali ke Daftar Hari</a>
+</body>
+</html>
