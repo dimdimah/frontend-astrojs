@@ -1,23 +1,26 @@
 ---
+import Card from "@components/Card.astro"
+
 const response = await fetch('http://localhost:3221/api/hari');
 const datas = await response.json();
-console.log(datas)
 ---
 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daftar Hari</title>
+    <title>Jadwal Ku</title>
 </head>
-<body>
-    <h1>Daftar Hari</h1>
-    <ul>
-        {datas.getData.data.map((hari) => (
-            <li>
-                <a href={`/detail/${hari.id}`}>{hari.nama_hari}</a>
-            </li>
-        ))}
-    </ul>
+<body class="bg-[#FFF9F9]">
+    <div class="mx-5 mt-5">
+        <h1 class="font-bold">Daily Schedule</h1>
+        <ul >
+            {datas.getData.data.map((hari) => (
+                <li class="my-3 mx-auto">
+                    <Card href={`/detail/${hari.id}`} title={hari.nama_hari} />
+                </li>
+            ))}
+        </ul>
+    </div>
 </body>
 </html>
