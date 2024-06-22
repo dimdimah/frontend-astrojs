@@ -17,10 +17,11 @@ const data = await response.json();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detail Hari - {data.hari.nama_hari}</title>
+    <title>Jadwal Hari - {data.hari.nama_hari}</title>
 </head>
 <body>
-    <h1>Detail Hari</h1>
+    <a href="/">← Kembali</a>
+    <h1>Jadwal Hari</h1>
     <h2>{data.hari.nama_hari}</h2>
     
     <h3>Asisten:</h3>
@@ -43,7 +44,5 @@ const data = await response.json();
             <li>{p.shift_piket} ({p.jam_piket})</li>
         ))}
     </ul>
-    
-    <a href="/">Kembali ke Daftar Hari</a>
 </body>
 </html>

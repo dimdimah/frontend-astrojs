@@ -13,14 +13,19 @@ const datas = await response.json();
 </head>
 <body class="bg-[#F3F5F7]">
     <div class="mx-5 mt-5">
-        <h1 class="font-bold text-2xl">Hai Dimah, Sudah siap berkegiatan</h1>
-        <ul >
-            {datas.getData.data.map((hari) => (
-                <li class="">
-                    <Card href={`/detail/${hari.id}`} title={hari.nama_hari} description="" />
-                </li>
-            ))}
-        </ul>
+        <h1 class="font-bold text-2xl">Hai, Dimah👋</h1>
+        <h1 class="font-bold text-2xl">Siap berkegiatan!</h1>
+        <div class="mt-5 font-semibold text-lg">
+            <p>Schedule</p>
+            <ul >
+                {datas.getData.data.map((hari) => (
+                    <li class="">
+                        <Card href={`/detail/${hari.id}`} title={hari.nama_hari} description="Jadwal Hari ini..." />
+                    </li>
+                ))}
+            </ul>
+        </div>
+        
     </div>
 </body>
 </html>

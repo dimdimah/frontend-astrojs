@@ -1,16 +1,21 @@
 ---
 interface Props {
-	title: string;
-	href: string;
-	description: string;
+  title: string;
+  href: string;
+  description: string;
 }
 
 const { href, title, description } = Astro.props;
 ---
 
-<div class="max-w-sm rounded overflow-hidden shadow-lg my-2 p-6 bg-[#ceebc7] border-2 border-solid border-slate-950">
-	<h2 class="font-bold text-xl">{title}</h2>
-	<p class="text-gray-700 text-base">{description}</p>
-	<a href={href} class="text-blue-500 hover:text-blue-700 mt-4 inline-block bg-blue-400">Read More</a>
-  </div>
-,
+<div
+  class="max-w-sm rounded-xl overflow-hidden shadow-lg my-4 p-6 bg-[#ceebc7] border-2 border-solid border-slate-950"
+>
+  <h2 class="font-bold text-xl">{title}</h2>
+  <p class="text-gray-700 text-base mb-3">{description}</p>
+  <a
+    href={href}
+    class="text-white mt-4 bg-[#79c068] hover:bg-[#56a443] border border-slate-950 border-solid font-semibold p-2 rounded-lg"
+    >Lihat Detail</a
+  >
+</div>
