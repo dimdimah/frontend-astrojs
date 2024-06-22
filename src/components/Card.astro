@@ -2,16 +2,15 @@
 interface Props {
 	title: string;
 	href: string;
+	description: string;
 }
 
-const { href, title } = Astro.props;
+const { href, title, description } = Astro.props;
 ---
 
-<li class="bg-[#DCFFE1] bg-opacity-80 rounded-lg shadow-md overflow-hidden">
-	<a href={href} class="block text-[#0E0D0D] text-lg p-6 transition-colors duration-500 ease-in-out hover:text-[#00A24A] focus:text-[#00A24A]  focus:outline-none">
-	  <h2 class="flex items-center justify-between">
-		{title}
-		<span class="text-xl">&rarr;</span>
-	  </h2>
-	</a>
-  </li>
+<div class="max-w-sm rounded overflow-hidden shadow-lg my-2 p-6 bg-[#ceebc7] border-2 border-solid border-slate-950">
+	<h2 class="font-bold text-xl">{title}</h2>
+	<p class="text-gray-700 text-base">{description}</p>
+	<a href={href} class="text-blue-500 hover:text-blue-700 mt-4 inline-block bg-blue-400">Read More</a>
+  </div>
+,

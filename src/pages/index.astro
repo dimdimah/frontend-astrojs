@@ -11,13 +11,13 @@ const datas = await response.json();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jadwal Ku</title>
 </head>
-<body class="bg-[#FFF9F9]">
+<body class="bg-[#F3F5F7]">
     <div class="mx-5 mt-5">
-        <h1 class="font-bold">Daily Schedule</h1>
+        <h1 class="font-bold text-2xl">Hai Dimah, Sudah siap berkegiatan</h1>
         <ul >
             {datas.getData.data.map((hari) => (
-                <li class="my-3 mx-auto">
-                    <Card href={`/detail/${hari.id}`} title={hari.nama_hari} />
+                <li class="">
+                    <Card href={`/detail/${hari.id}`} title={hari.nama_hari} description="" />
                 </li>
             ))}
         </ul>
