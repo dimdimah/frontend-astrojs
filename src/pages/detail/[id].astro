@@ -1,6 +1,6 @@
 ---
 import Card from "@components/CardDetails.astro";
-import DetailedCard from "@components/CardDetails.astro";
+import DayBanner from "../../../public/banner.svg";
 
 export async function getStaticPaths() {
   const response = await fetch("https://jadwal-api.vercel.app/api/hari");
@@ -22,50 +22,62 @@ const data = await response.json();
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Jadwal Hari - {data.hari.nama_hari}</title>
   </head>
-  <body class="text-gray-800 p-4 bg-[#F3F5F7]">
+  <body class="text-gray-800 p-3 bg-[#F3F5F7]">
     <div class="max-w-4xl mx-auto p-6">
-      <a href="/" class="text-blue-500 hover:text-blue-700">← Kembali</a>
-      <Card title={data.hari.nama_hari} description="Jadwal Hari ini..." />
+      <a href="/" class="hover:text-gray-500 flex flex-row items-center gap-2"><img src='/arrowleft.svg' alt="icon-details" class="w-4 h-4" /><p class="font-bold">Kembali</p></a>
+      <Card title={data.hari.nama_hari} description="Jadwal Hari ini..."/>
 
       <section>
-        <h3 class="text-xl font-semibold mb-2">Asisten</h3>
+        <h3 class="text-xl font-semibold mb-2 mt-4">Asisten</h3>
         <div>
           {
-            data.asisten.map((ast) => (
-              <div class="max-w-sm rounded-xl overflow-hidden shadow-lg my-4 p-6 bg-[#DCFFE1] border-2 border-solid border-slate-950">
-                <h2 class="font-bold text-2xl mb-3">{ast.nama_matkul}</h2>
-                <p class="text-gray-700 text-base">{ast.nama_dosen}</p>
-                <p class="text-gray-700 text-base">{ast.jam_matkul}</p>
-              </div>
-            ))
+            data.asisten.length > 0 ? (
+              data.asisten.map((ast) => (
+                <div class="max-w-sm rounded-xl overflow-hidden shadow-lg my-2 p-6 bg-[#FFFFFF] border-2 border-solid border-slate-950">
+                  <h2 class="font-bold text-2xl mb-3">{ast.nama_matkul}</h2>
+                  <p class="text-gray-700 text-base">{ast.nama_dosen}</p>
+                  <p class="text-gray-700 text-base">{ast.jam_matkul}</p>
+                </div>
+              ))
+            ) : (
+              <p class="text-gray-700 text-base">Jadwal Kosong...</p>
+            )
           }
         </div>
       </section>
 
       <section class="mt-6">
         <h3 class="text-xl font-semibold mb-2">Kuliah</h3>
-        <div class="ml-4">
+        <div>
           {
-            data.kuliah.map((kls) => (
-              <h1>
-                {kls.nama_matkul} - {kls.nama_dosen} ({kls.jam_matkul})
-              </h1>
-            ))
+            data.kuliah.length > 0 ? (
+              data.kuliah.map((kls) => (
+                <h1>
+                  {kls.nama_matkul} - {kls.nama_dosen} ({kls.jam_matkul})
+                </h1>
+              ))
+            ) : (
+              <p class="text-gray-700 text-base">Jadwal Kosong...</p>
+            )
           }
         </div>
       </section>
 
       <section class="mt-6">
         <h3 class="text-xl font-semibold mb-2">Piket</h3>
-        <ul class="list-disc list-inside ml-4">
+        <div>
           {
-            data.piket.map((pkt) => (
-              <li>
-                {pkt.shift_piket} ({pkt.jam_piket})
-              </li>
-            ))
+            data.piket.length > 0 ? (
+              data.piket.map((pkt) => (
+                <li>
+                  {pkt.shift_piket} ({pkt.jam_piket})
+                </li>
+              ))
+            ) : (
+              <p class="text-gray-700 text-base">Jadwal Kosong...</p>
+            )
           }
-        </ul>
+        </div>
       </section>
     </div>
   </body>
