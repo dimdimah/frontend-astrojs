@@ -1,31 +1,26 @@
 ---
 import Card from "@components/Card.astro"
+import Layout from "@layouts/Layout.astro";
 
-const response = await fetch('https://jadwal-api.vercel.app/api/hari');
+const response = await fetch(import.meta.env.PUBLIC_API_URL);
 const datas = await response.json();
----
 
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jadwal Ku</title>
-</head>
-<body class="bg-[#F3F5F7]">
-    <div class="mx-5 mt-5">
-        <h1 class="font-bold text-2xl">Hai, Dimah👋</h1>
-        <h1 class="font-bold text-2xl">Siap berkegiatan!</h1>
-        <div class="mt-5 font-semibold text-lg">
-            <p>Schedule</p>
-            <ul >
-                {datas.getData.data.map((hari) => (
-                    <li class="">
-                        <Card href={`/detail/${hari.id}`} title={hari.nama_hari} description="Jadwal Hari ini..." />
-                    </li>
-                ))}
-            </ul>
+const totalData = datas.getData.data.length;
+---
+    <Layout title='Jadwal Hari'>
+        <div>
+            <h1 class="font-bold text-2xl">Hai, Dimah👋</h1>
+            <h1 class="font-bold text-2xl">Siap berkegiatan!</h1>
+            <div class="mt-5 font-semibold text-lg">
+                <p>Schedule</p>
+                <h1 class="text-2xl font-bold mb-4">Jumlah Hari: {totalData}</h1>
+                <ul >
+                    {datas.getData.data.map((hari) => (
+                        <li>
+                            <Card href={`/detail/${hari.id}`} title={hari.nama_hari} description="Jadwal Hari ini..." />
+                        </li>
+                    ))}
+                </ul>
+            </div>
         </div>
-        
-    </div>
-</body>
-</html>
+    </Layout>
