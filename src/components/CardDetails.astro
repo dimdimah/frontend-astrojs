@@ -4,16 +4,18 @@ interface Props {
   description: string;
 }
 
-const {title,description} = Astro.props
+const { title, description } = Astro.props;
 ---
-<!-- compenents buat card -->
-<div class="flex max-w-sm rounded-xl overflow-hidden shadow-lg my-4 p-6 bg-[#FEEB97] border-2 border-solid border-slate-950 items-center">
-    <div class="flex-1">
-      <h2 class="font-bold text-2xl mb-2">{title}</h2>
-      <p class="text-gray-700 text-base mb-3">{description}</p>
-    </div>
-    <div class="flex-shrink-0 ml-4">
-      <img src='/banner.svg' alt={title} class="w-24 h-24 object-cover" />
-    </div>
-  </div>
 
+<!-- compenents buat card -->
+<div
+  class="flex max-w-sm rounded-xl overflow-hidden shadow-lg my-4 p-6 bg-[#FEEB97] border-2 border-solid border-slate-950 items-center"
+>
+  <div class="flex-1">
+    <h2 class="font-bold text-2xl mb-2">{title}</h2>
+    <p class="text-gray-700 text-md mb-3">{description}</p>
+  </div>
+  <div class="flex-shrink-0 ml-4">
+    <img src="/banner.svg" alt={title} class="w-24 h-24 object-cover" />
+  </div>
+</div>

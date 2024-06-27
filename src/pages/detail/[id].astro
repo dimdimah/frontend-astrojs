@@ -17,7 +17,7 @@ const data = await response.json();
 ---
 
 <Layout title=`Jadwal Hari - ${data.hari.nama_hari}`>
-  <div>
+  <div class="min-h-screen">
     <a href="/" class="hover:text-gray-500 flex flex-row items-center gap-2"
       ><img src="/arrowleft.svg" alt="icon-details" class="w-4 h-4" /><p
         class="font-bold"
@@ -34,7 +34,7 @@ const data = await response.json();
           data.asisten.length > 0 ? (
             data.asisten.map((ast) => (
               <div class="max-w-sm rounded-xl overflow-hidden shadow-lg my-2 p-6 bg-[#FFFFFF] border-2 border-solid border-slate-950">
-                <h2 class="font-bold text-2xl mb-3">{ast.nama_matkul}</h2>
+                <h2 class="font-bold text-lg mb-2">{ast.nama_matkul}</h2>
                 <p class="text-gray-700 text-base">{ast.nama_dosen}</p>
                 <p class="text-gray-700 text-base">{ast.jam_matkul}</p>
               </div>
@@ -52,9 +52,11 @@ const data = await response.json();
         {
           data.kuliah.length > 0 ? (
             data.kuliah.map((kls) => (
-              <h1>
-                {kls.nama_matkul} - {kls.nama_dosen} ({kls.jam_matkul})
-              </h1>
+              <div class="max-w-sm rounded-xl overflow-hidden shadow-lg my-2 p-6 bg-[#FFFFFF] border-2 border-solid border-slate-950">
+                <h2 class="font-bold text-lg mb-2">{kls.nama_matkul}</h2>
+                <p class="text-gray-700 text-base">{kls.nama_dosen}</p>
+                <p class="text-gray-700 text-base">{kls.jam_matkul}</p>
+              </div>
             ))
           ) : (
             <p class="text-gray-700 text-base">Jadwal Kosong...</p>
@@ -69,9 +71,10 @@ const data = await response.json();
         {
           data.piket.length > 0 ? (
             data.piket.map((pkt) => (
-              <li>
-                {pkt.shift_piket} ({pkt.jam_piket})
-              </li>
+              <div class="max-w-sm rounded-xl overflow-hidden shadow-lg my-2 p-6 bg-[#FFFFFF] border-2 border-solid border-slate-950">
+                <h2 class="font-bold text-lg mb-2">{pkt.shift_piket}</h2>
+                <p class="text-gray-700 text-base">{pkt.jam_piket}</p>
+              </div>
             ))
           ) : (
             <p class="text-gray-700 text-base">Jadwal Kosong...</p>

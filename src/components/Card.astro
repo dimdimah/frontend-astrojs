@@ -9,13 +9,18 @@ const { href, title, description } = Astro.props;
 ---
 
 <div
-  class="max-w-sm rounded-xl overflow-hidden shadow-lg mt-4 mb-6 p-6 bg-[#ceebc7] border-2 border-solid border-slate-950 gap-2 flex flex-col"
+  class="max-w-sm rounded-xl overflow-hidden mt-4 mb-6 p-6 bg-[#ceebc7] border-2 border-solid border-slate-950 gap-2 flex flex-row justify-between"
 >
-  <h2 class="font-bold text-2xl">{title}</h2>
-  <p class="text-gray-700 text-lg mb-3">{description}</p>
-  <a
-    href={href}
-    class="text-white text-center mt-4 bg-[#79c068] hover:bg-[#56a443] border border-slate-950 border-solid font-semibold p-2 rounded-lg"
-    >Lihat Detail</a
-  >
+  <div>
+    <h2 class="font-bold text-2xl">{title}</h2>
+    <p class="text-gray-700 text-md mb-5">{description}</p>
+    <a
+      href={href}
+      class="text-white text-center mt-4 bg-[#79c068] hover:bg-[#56a443] border border-slate-950 border-solid font-semibold p-2 rounded-lg"
+      >Lihat Detail</a
+    >
+  </div>
+  <div>
+    <img src="/banner.svg" alt={title} class="w-28 h-28 object-cover" />
+  </div>
 </div>
