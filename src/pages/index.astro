@@ -10,11 +10,25 @@ const totalData = datas.getData.data.length;
 
 <Layout title="Schedule Em">
   <div>
-    <div class="fixed bg-[#F3F5F7] w-full top-0 py-3 overflow-hidden">
+    <header class="flex justify-between items-center mb-3">
+      <p
+        class="bg-slate-50 text-gray-900 rounded-full w-10 p-2 text-center shadow-lg"
+      >
+        D
+      </p>
+      <p class="text-lg font-semibold">Schedule Em</p>
+      <p
+        class="bg-slate-50 text-gray-900 rounded-full w-10 p-2 text-center shadow-lg"
+      >
+        A
+      </p>
+    </header>
+    <main class="bg-[#FEEB97] p-6 rounded-xl my-5 shadow-lg">
+      <p class="mb-5 text-lg font-semibold">Scedule Em</p>
       <h1 class="font-bold text-xl">Hai, Dimah👋</h1>
-    </div>
-    <h1 class="font-bold text-xl pt-6">Siap berkegiatan!</h1>
-    <div class="mt-5 font-semibold">
+      <h1 class="font-bold text-xl">Siap berkegiatan!</h1>
+    </main>
+    <section class="mt-5 font-semibold">
       <p>Schedule</p>
       <ul>
         {
@@ -29,6 +43,6 @@ const totalData = datas.getData.data.length;
           ))
         }
       </ul>
-    </div>
+    </section>
   </div>
 </Layout>
