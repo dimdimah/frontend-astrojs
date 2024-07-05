@@ -25,16 +25,28 @@ const data = await response.json();
         Kembali
       </p></a
     >
-    <Card title={data.hari.nama_hari} description="Jadwal Hari ini..." />
+    <!-- <Card
+      title={data.hari.nama_hari}
+      description="Jadwal Hari ini..."
+      image="/banner.svg"
+    /> -->
+    <main class="my-10">
+      <p class="text-gray-700 text-2xl font-semibold">{data.hari.nama_hari}</p>
+      <p class="text-gray-700 text-base">Jadwal Kamu Hari ini..</p>
+    </main>
 
     <section>
-      <h3 class="text-xl font-semibold mb-2 mt-4">Asisten</h3>
+      <h1
+        class="bg-[#EDE3D5] text-[#63422B] rounded-full w-24 text-center font-semibold my-2"
+      >
+        Asisten
+      </h1>
       <div>
         {
           data.asisten.length > 0 ? (
             data.asisten.map((ast) => (
-              <div class="max-w-sm rounded-xl overflow-hidden shadow-lg my-2 p-6 bg-[#FFFFFF] border-2 border-solid border-slate-950">
-                <h2 class="font-bold text-lg mb-2">{ast.nama_matkul}</h2>
+              <div class="max-w-sm rounded-xl overflow-hidden shadow-lg my-2 p-6 bg-[#FFFFFF] ">
+                <h2 class="font-bold text-lg ">{ast.nama_matkul}</h2>
                 <p class="text-gray-700 text-base">{ast.nama_dosen}</p>
                 <p class="text-gray-700 text-base">{ast.jam_matkul}</p>
               </div>
@@ -47,13 +59,17 @@ const data = await response.json();
     </section>
 
     <section class="mt-6">
-      <h3 class="text-xl font-semibold mb-2">Kuliah</h3>
+      <h1
+        class="bg-[#CCE1F1] text-[#05456C] rounded-full w-24 text-center font-semibold my-2"
+      >
+        Kuliah
+      </h1>
       <div>
         {
           data.kuliah.length > 0 ? (
             data.kuliah.map((kls) => (
-              <div class="max-w-sm rounded-xl overflow-hidden shadow-lg my-2 p-6 bg-[#FFFFFF] border-2 border-solid border-slate-950">
-                <h2 class="font-bold text-lg mb-2">{kls.nama_matkul}</h2>
+              <div class="max-w-sm rounded-xl overflow-hidden shadow-lg my-2 p-6 bg-[#FFFFFF] ">
+                <h2 class="font-bold text-lg">{kls.nama_matkul}</h2>
                 <p class="text-gray-700 text-base">{kls.nama_dosen}</p>
                 <p class="text-gray-700 text-base">{kls.jam_matkul}</p>
               </div>
@@ -66,13 +82,17 @@ const data = await response.json();
     </section>
 
     <section class="mt-6">
-      <h3 class="text-xl font-semibold mb-2">Piket</h3>
+      <h1
+        class="bg-[#FDD6D4] text-[#901717] rounded-full w-24 text-center font-semibold my-2"
+      >
+        Piket
+      </h1>
       <div>
         {
           data.piket.length > 0 ? (
             data.piket.map((pkt) => (
-              <div class="max-w-sm rounded-xl overflow-hidden shadow-lg my-2 p-6 bg-[#FFFFFF] border-2 border-solid border-slate-950">
-                <h2 class="font-bold text-lg mb-2">{pkt.shift_piket}</h2>
+              <div class="max-w-sm rounded-xl overflow-hidden shadow-lg my-2 p-6 bg-[#FFFFFF] ">
+                <h2 class="font-bold text-lg">{pkt.shift_piket}</h2>
                 <p class="text-gray-700 text-base">{pkt.jam_piket}</p>
               </div>
             ))
