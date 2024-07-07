@@ -1,0 +1,15 @@
+---
+interface Props {
+  link: string;
+  alt: string;
+  className?: string;
+  text: string;
+}
+
+const { link, alt, className, text } = Astro.props;
+---
+
+<div class="flex flex-row items-center gap-2">
+  <img src={link} alt={alt} class=`w-5 h-5 ${className}` />
+  <p>{text}</p>
+</div>
