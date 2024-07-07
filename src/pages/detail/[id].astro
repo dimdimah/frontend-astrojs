@@ -1,6 +1,6 @@
 ---
 import Card from "@components/CardDetails.astro";
-import Image from "@components/ImageCall.astro";
+import Label from "@components/Labels.astro";
 import Layout from "@layouts/Layout.astro";
 
 export async function getDataApi() {
@@ -30,20 +30,20 @@ const data = await response.json();
     <main class="my-10 mx-3">
       <p class="text-gray-700 text-2xl font-semibold">{data.hari.nama_hari}</p>
       <p class="text-gray-700 text-base">Jadwal Kamu Hari ini..</p>
-      <span class="flex flex-row gap-5 mt-3 mb-10">
-        <Image link="/labicon.svg" alt="icon-lab" text="5" />
-        <Image link="/kuliahicon.svg" alt="icon-kuliah" text="5" />
-        <Image link="/piketicon.svg" alt="icon-piket" text="5" />
+      <span class="flex gap-3 mt-4 mb-10">
+        <Label label="Asisten" description="5" />
+        <Label label="Kuliah" description="2" />
+        <Label label="Piket" description="3" />
       </span>
     </main>
 
     <section>
       <h1
-        class="bg-[#EDE3D5] text-[#63422B] rounded-full w-24 text-base text-center font-semibold my-2"
+        class="bg-[#EDE3D5] text-[#63422B] rounded-full w-24 text-base text-center font-semibold my-5"
       >
         Asisten
       </h1>
-      <div class="bg-[#F3F5F7] px-2 py-1 rounded-lg">
+      <div class="bg-[#F3F5F7] px-2 py-2 rounded-lg flex flex-col gap-3">
         {
           data.asisten.length > 0 ? (
             data.asisten.map((ast) => (
@@ -54,7 +54,7 @@ const data = await response.json();
               />
             ))
           ) : (
-            <p class="text-gray-700 text-sm px-6 py-3 bg-[#FFFFFF] rounded-xl">
+            <p class="text-gray-700 text-sm px-6 py-3 bg-[#FFFFFF] rounded-md">
               Jadwal Kosong...
             </p>
           )
@@ -64,11 +64,11 @@ const data = await response.json();
 
     <section class="mt-6">
       <h1
-        class="bg-[#CCE1F1] text-[#05456C] rounded-full w-24 text-center font-semibold my-2 text-base"
+        class="bg-[#CCE1F1] text-[#05456C] rounded-full w-24 text-center font-semibold my-5 text-base"
       >
         Kuliah
       </h1>
-      <div class="bg-[#F3F5F7] px-2 py-1 rounded-lg">
+      <div class="bg-[#F3F5F7] px-2 py-2 rounded-lg flex flex-col gap-3">
         {
           data.kuliah.length > 0 ? (
             data.kuliah.map((kls) => (
@@ -79,7 +79,7 @@ const data = await response.json();
               />
             ))
           ) : (
-            <p class="text-gray-700 text-sm px-6 py-3 bg-[#FFFFFF] rounded-xl">
+            <p class="text-gray-700 text-sm px-6 py-3 bg-[#FFFFFF] rounded-md">
               Jadwal Kosong...
             </p>
           )
@@ -89,18 +89,18 @@ const data = await response.json();
 
     <section class="mt-6">
       <h1
-        class="bg-[#FDD6D4] text-[#901717] rounded-full w-24 text-center font-semibold my-2 text-base"
+        class="bg-[#FDD6D4] text-[#901717] rounded-full w-24 text-center font-semibold my-5 text-base"
       >
         Piket
       </h1>
-      <div class="bg-[#F3F5F7] px-2 py-1 rounded-lg">
+      <div class="bg-[#F3F5F7] px-2 py-2 rounded-lg flex flex-col gap-3">
         {
           data.piket.length > 0 ? (
             data.piket.map((pkt) => (
               <Card title={pkt.shift_piket} description={pkt.jam_piket} />
             ))
           ) : (
-            <p class="text-gray-700 text-sm px-6 py-3 bg-[#FFFFFF] rounded-xl">
+            <p class="text-gray-700 text-sm px-6 py-3 bg-[#FFFFFF] rounded-md">
               Jadwal Kosong...
             </p>
           )
