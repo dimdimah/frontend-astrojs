@@ -3,37 +3,32 @@ import Card from "@components/CardDetails.astro";
 import Label from "@components/Labels.astro";
 import Layout from "@layouts/Layout.astro";
 
-export async function getDataApi() {
-  const response = await fetch(import.meta.env.PUBLIC_API_URL);
-  const hariList = await response.json();
-
-  return hariList.map((hari) => ({
-    params: { id: hari.id.toString() },
-  }));
-}
-
 const { id } = Astro.params;
 const response = await fetch(`${import.meta.env.PUBLIC_API_URL}/${id}`);
 const data = await response.json();
+
+const {
+  hari: { nama_hari },
+  kuliah,
+  piket,
+  asisten,
+} = data.data;
 ---
 
-<Layout title=`Jadwal Hari - ${data.hari.nama_hari}`>
+<Layout title={`Jadwal Hari - ${nama_hari}`}>
   <div class="min-h-screen">
-    <a href="/" class="hover:text-gray-500 flex flex-row items-center gap-2"
-      ><img src="/arrowleft.svg" alt="icon-details" class="w-4 h-4" /><p
-        class="font-bold"
-      >
-        Kembali
-      </p></a
-    >
+    <a href="/" class="hover:text-gray-500 flex flex-row items-center gap-2">
+      <img src="/arrowleft.svg" alt="icon-details" class="w-4 h-4" />
+      <p class="font-bold">Kembali</p>
+    </a>
 
     <main class="my-10 mx-3">
-      <p class="text-gray-700 text-2xl font-semibold">{data.hari.nama_hari}</p>
-      <p class="text-gray-700 text-base">Jadwal Kamu Hari ini..</p>
+      <p class="text-gray-700 text-2xl font-semibold">{nama_hari}</p>
+      <p class="text-gray-700 text-base">Jadwal Kamu Hari Ini..</p>
       <span class="flex gap-3 mt-4 mb-10">
-        <Label label="Asisten" description="5" />
-        <Label label="Kuliah" description="2" />
-        <Label label="Piket" description="3" />
+        <Label label="Asisten" description={asisten.length} />
+        <Label label="Kuliah" description={kuliah.length} />
+        <Label label="Piket" description={piket.length} />
       </span>
     </main>
 
@@ -45,15 +40,17 @@ const data = await response.json();
       </h1>
       <div class="bg-[#F3F5F7] px-2 py-2 rounded-lg flex flex-col gap-3">
         {
-          data.asisten.length > 0 ? (
-            data.asisten.map((ast) => (
+          asisten.length > 0 &&
+            asisten.map((ast) => (
               <Card
                 title={ast.nama_matkul}
                 description={ast.nama_dosen}
                 text={ast.jam_matkul}
               />
             ))
-          ) : (
+        }
+        {
+          asisten.length === 0 && (
             <p class="text-gray-700 text-sm px-6 py-3 bg-[#FFFFFF] rounded-md">
               Jadwal Kosong...
             </p>
@@ -70,15 +67,17 @@ const data = await response.json();
       </h1>
       <div class="bg-[#F3F5F7] px-2 py-2 rounded-lg flex flex-col gap-3">
         {
-          data.kuliah.length > 0 ? (
-            data.kuliah.map((kls) => (
+          kuliah.length > 0 &&
+            kuliah.map((kls) => (
               <Card
                 title={kls.nama_matkul}
                 description={kls.nama_dosen}
                 text={kls.jam_matkul}
               />
             ))
-          ) : (
+        }
+        {
+          kuliah.length === 0 && (
             <p class="text-gray-700 text-sm px-6 py-3 bg-[#FFFFFF] rounded-md">
               Jadwal Kosong...
             </p>
@@ -95,11 +94,13 @@ const data = await response.json();
       </h1>
       <div class="bg-[#F3F5F7] px-2 py-2 rounded-lg flex flex-col gap-3">
         {
-          data.piket.length > 0 ? (
-            data.piket.map((pkt) => (
+          piket.length > 0 &&
+            piket.map((pkt) => (
               <Card title={pkt.shift_piket} description={pkt.jam_piket} />
             ))
-          ) : (
+        }
+        {
+          piket.length === 0 && (
             <p class="text-gray-700 text-sm px-6 py-3 bg-[#FFFFFF] rounded-md">
               Jadwal Kosong...
             </p>
@@ -107,5 +108,5 @@ const data = await response.json();
         }
       </div>
     </section>
-  </div>
-</Layout>
+  </div></Layout
+>
