@@ -1,8 +1,9 @@
 ---
 import Card from "@components/CardDetails.astro";
+import Label from "@components/Labels.astro";
 import Layout from "@layouts/Layout.astro";
 
-export async function getStaticPaths() {
+export async function getDataApi() {
   const response = await fetch(import.meta.env.PUBLIC_API_URL);
   const hariList = await response.json();
 
@@ -25,59 +26,83 @@ const data = await response.json();
         Kembali
       </p></a
     >
-    <Card title={data.hari.nama_hari} description="Jadwal Hari ini..." />
+
+    <main class="my-10 mx-3">
+      <p class="text-gray-700 text-2xl font-semibold">{data.hari.nama_hari}</p>
+      <p class="text-gray-700 text-base">Jadwal Kamu Hari ini..</p>
+      <span class="flex gap-3 mt-4 mb-10">
+        <Label label="Asisten" description="5" />
+        <Label label="Kuliah" description="2" />
+        <Label label="Piket" description="3" />
+      </span>
+    </main>
 
     <section>
-      <h3 class="text-xl font-semibold mb-2 mt-4">Asisten</h3>
-      <div>
+      <h1
+        class="bg-[#EDE3D5] text-[#63422B] rounded-full w-24 text-base text-center font-semibold my-5"
+      >
+        Asisten
+      </h1>
+      <div class="bg-[#F3F5F7] px-2 py-2 rounded-lg flex flex-col gap-3">
         {
           data.asisten.length > 0 ? (
             data.asisten.map((ast) => (
-              <div class="max-w-sm rounded-xl overflow-hidden shadow-lg my-2 p-6 bg-[#FFFFFF] border-2 border-solid border-slate-950">
-                <h2 class="font-bold text-lg mb-2">{ast.nama_matkul}</h2>
-                <p class="text-gray-700 text-base">{ast.nama_dosen}</p>
-                <p class="text-gray-700 text-base">{ast.jam_matkul}</p>
-              </div>
+              <Card
+                title={ast.nama_matkul}
+                description={ast.nama_dosen}
+                text={ast.jam_matkul}
+              />
             ))
           ) : (
-            <p class="text-gray-700 text-base">Jadwal Kosong...</p>
+            <p class="text-gray-700 text-sm px-6 py-3 bg-[#FFFFFF] rounded-md">
+              Jadwal Kosong...
+            </p>
           )
         }
       </div>
     </section>
 
     <section class="mt-6">
-      <h3 class="text-xl font-semibold mb-2">Kuliah</h3>
-      <div>
+      <h1
+        class="bg-[#CCE1F1] text-[#05456C] rounded-full w-24 text-center font-semibold my-5 text-base"
+      >
+        Kuliah
+      </h1>
+      <div class="bg-[#F3F5F7] px-2 py-2 rounded-lg flex flex-col gap-3">
         {
           data.kuliah.length > 0 ? (
             data.kuliah.map((kls) => (
-              <div class="max-w-sm rounded-xl overflow-hidden shadow-lg my-2 p-6 bg-[#FFFFFF] border-2 border-solid border-slate-950">
-                <h2 class="font-bold text-lg mb-2">{kls.nama_matkul}</h2>
-                <p class="text-gray-700 text-base">{kls.nama_dosen}</p>
-                <p class="text-gray-700 text-base">{kls.jam_matkul}</p>
-              </div>
+              <Card
+                title={kls.nama_matkul}
+                description={kls.nama_dosen}
+                text={kls.jam_matkul}
+              />
             ))
           ) : (
-            <p class="text-gray-700 text-base">Jadwal Kosong...</p>
+            <p class="text-gray-700 text-sm px-6 py-3 bg-[#FFFFFF] rounded-md">
+              Jadwal Kosong...
+            </p>
           )
         }
       </div>
     </section>
 
     <section class="mt-6">
-      <h3 class="text-xl font-semibold mb-2">Piket</h3>
-      <div>
+      <h1
+        class="bg-[#FDD6D4] text-[#901717] rounded-full w-24 text-center font-semibold my-5 text-base"
+      >
+        Piket
+      </h1>
+      <div class="bg-[#F3F5F7] px-2 py-2 rounded-lg flex flex-col gap-3">
         {
           data.piket.length > 0 ? (
             data.piket.map((pkt) => (
-              <div class="max-w-sm rounded-xl overflow-hidden shadow-lg my-2 p-6 bg-[#FFFFFF] border-2 border-solid border-slate-950">
-                <h2 class="font-bold text-lg mb-2">{pkt.shift_piket}</h2>
-                <p class="text-gray-700 text-base">{pkt.jam_piket}</p>
-              </div>
+              <Card title={pkt.shift_piket} description={pkt.jam_piket} />
             ))
           ) : (
-            <p class="text-gray-700 text-base">Jadwal Kosong...</p>
+            <p class="text-gray-700 text-sm px-6 py-3 bg-[#FFFFFF] rounded-md">
+              Jadwal Kosong...
+            </p>
           )
         }
       </div>

@@ -9,26 +9,40 @@ const totalData = datas.getData.data.length;
 ---
 
 <Layout title="Schedule Em">
-  <div>
-    <div class="fixed bg-[#F3F5F7] w-full top-0 py-3 overflow-hidden">
-      <h1 class="font-bold text-xl">Hai, Dimah👋</h1>
+  <nav class="flex justify-between items-center mb-3">
+    <div class="flex flex-row gap-2 items-center">
+      <p
+        class="bg-slate-800 text-gray-100 rounded-full w-10 p-2 text-center shadow-lg"
+      >
+        D
+      </p>
+      <span class="text-sm leading-tight items-center">
+        <p class="font-semibold">Dimah Luthfi</p>
+        <p>Mahasiswa</p>
+      </span>
     </div>
-    <h1 class="font-bold text-xl pt-6">Siap berkegiatan!</h1>
-    <div class="mt-5 font-semibold">
-      <p>Schedule</p>
-      <ul>
-        {
-          datas.getData.data.map((hari) => (
-            <li>
-              <Card
-                href={`/detail/${hari.id}`}
-                title={hari.nama_hari}
-                description="Jadwal Hari ini..."
-              />
-            </li>
-          ))
-        }
-      </ul>
-    </div>
-  </div>
+    <img src="/notification.svg" alt="icon-details" class="w-6 h-6" />
+  </nav>
+  <header class="mb-14 mt-8 mx-2">
+    <p class="text-gray-700 text-3xl font-semibold">Hey, Dimah👋</p>
+    <p class="text-gray-700 text-base">A great day to get better</p>
+  </header>
+  <main class="mt-5 font-semibold">
+    <p class="bg-[#EDE3D5] text-[#63422B] rounded-full w-24 text-center">
+      Schedule
+    </p>
+    <ul class="bg-[#F3F5F7] px-2 py-2 mt-5 rounded-lg">
+      {
+        datas.getData.data.map((hari) => (
+          <li>
+            <Card
+              href={`/detail/${hari.id}`}
+              title={hari.nama_hari}
+              description="Jadwal Hari ini..."
+            />
+          </li>
+        ))
+      }
+    </ul>
+  </main>
 </Layout>
