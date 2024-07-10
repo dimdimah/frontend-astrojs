@@ -4,8 +4,6 @@ import Layout from "@layouts/Layout.astro";
 
 const response = await fetch(import.meta.env.PUBLIC_API_URL);
 const datas = await response.json();
-
-const totalData = datas.getData.data.length;
 ---
 
 <Layout title="Schedule Em">
@@ -33,7 +31,7 @@ const totalData = datas.getData.data.length;
     </p>
     <ul class="bg-[#F3F5F7] px-2 py-2 mt-5 rounded-lg">
       {
-        datas.getData.data.map((hari) => (
+        datas.data.map((hari) => (
           <li>
             <Card
               href={`/detail/${hari.id}`}
